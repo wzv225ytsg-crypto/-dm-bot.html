@@ -50,8 +50,8 @@ const reason=match?match[1].trim():"";
 const words=reason.split(/\s+/).filter(Boolean);
 const accepted=/beni\s+al/i.test(msg)&&words.length>=6;
 result.textContent=accepted
-?"✅ TEST SONUCU: ALINDIN"
-:"❌ TEST SONUCU: ALINMADIN — Daha açıklayıcı bir sebep yaz.";
+?"✅ TEST SONUCU: Seçildin"
+:"❌ TEST SONUCU: Maalesef — Daha açıklayıcı bir sebep yaz.";
 }
 </script>
 </body>
