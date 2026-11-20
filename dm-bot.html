@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ANT KINGDOM DM BOT</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:20px;background:#09130e;color:#e9f5eb;font-family:Arial}
+main{max-width:650px;margin:auto}
+.card{background:#14251b;padding:18px;border-radius:15px;margin:15px 0}
+input,textarea{
+display:block;width:100%;padding:14px;margin:12px 0;
+background:#fff;color:#111;border:2px solid #75c982;
+border-radius:9px;font-size:17px;
+-webkit-appearance:none;appearance:none;
+opacity:1;pointer-events:auto;user-select:text;
+-webkit-user-select:text;
+}
+textarea{min-height:150px;resize:vertical}
+button{width:100%;padding:14px;background:#75c982;color:#09200e;border:0;border-radius:9px;font-weight:bold}
+#result{margin-top:15px;padding:12px;background:#20382a;border-radius:9px}
+</style>
+</head>
+<body>
+<main>
+<h1>🐜 ANT KINGDOM</h1>
+<p>DM BOT — Başvuru sistemi</p>
+<div class="card">
+<h3>Başvuru testi</h3>
+<label>Kullanıcı adı</label>
+<input id="user" type="text" placeholder="@kullanici" autocomplete="off">
+
+<label>Gelen DM mesajı</label>
+<textarea id="message" placeholder="Beni al çünkü... sebep: ..."></textarea>
+
+<button type="button" onclick="evaluateDM()">DEĞERLENDİR</button>
+<div id="result">Mesajını buraya yazabilirsin.</div>
+</div>
+</main>
+<script>
+function evaluateDM(){
+const user=document.getElementById("user").value.trim();
+const msg=document.getElementById("message").value.trim();
+const result=document.getElementById("result");
+if(!user||!msg){result.textContent="İki alanı da doldur.";return;}
+const match=msg.match(/sebep\s*:\s*(.*)/is);
+const reason=match?match[1].trim():"";
+const words=reason.split(/\s+/).filter(Boolean);
+const accepted=/beni\s+al/i.test(msg)&&words.length>=6;
+result.textContent=accepted
+?"✅ TEST SONUCU: ALINDIN"
+:"❌ TEST SONUCU: ALINMADIN — Daha açıklayıcı bir sebep yaz.";
+}
+</script>
+</body>
+</html>
